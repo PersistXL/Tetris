@@ -16,6 +16,9 @@ public abstract class Brick {
 
     public BrickPiece[] brickPieces = new BrickPiece[4];
 
+    /*
+    旋转度数
+     */
     public enum orientation {
         original, rotate90Degree, rotate180Degree, rotate270Degree
     }
@@ -23,6 +26,9 @@ public abstract class Brick {
 
     public abstract boolean rotateBrickWithBricks(int[][] bricks);
 
+    /*
+    方块尚未完全堕落
+     */
     private boolean brickHasntTotalyFallen(Brick brick) {
         for (int i = 0; i < 4; ++i) {
             if (brick.brickPieces[i].getRow() < 0)
@@ -32,6 +38,9 @@ public abstract class Brick {
         return false;
     }
 
+    /*
+    砖可以旋转
+     */
     public boolean brickCanRotate(Brick brick, int[][] bricks) {
         if (brick.leftBorder < 0 || brick.rightBorder >= LConfig.colsOfBricks)
             return false;
@@ -49,6 +58,9 @@ public abstract class Brick {
         return true;
     }
 
+    /*
+    使得方块迅速下降
+     */
     public boolean brickCanFallDownWithBricks(int[][] bricks) {
         for (int i = 0; i < 4; ++i) {
             if (brickPieces[i].getRow() + 1 == LConfig.rowsOfBricks) {

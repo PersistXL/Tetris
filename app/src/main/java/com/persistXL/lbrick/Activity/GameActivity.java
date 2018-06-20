@@ -32,13 +32,17 @@ import java.util.Random;
  */
 public class GameActivity extends Activity {
 
+    /*
+    当前方块
+    下一个方块
+     */
     private Brick currentBrick;
     private Brick nextBrick;
 
     private int gameSpeed = 1000;
     private int currentScore = 0;
     private int currentLevel = 1;
-    private int currentLevelScore = 0;
+    private int currentLevelScore = 0;  //当前等级的分数
 
     private CurrentBrickView currentBrickView;
     private AllBricksView allBricksView;
@@ -54,8 +58,12 @@ public class GameActivity extends Activity {
 
     Handler handler = new Handler();
 
+
     Runnable update_thread = new Runnable()
     {
+        /*
+        静态代码块
+        */
         public void run()
         {
             if (currentBrick.brickCanFallDownWithBricks(allBricksView.bricks)) {
@@ -152,6 +160,9 @@ public class GameActivity extends Activity {
         handler.post(update_thread);
     }
 
+    /*
+    暂停
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -162,6 +173,9 @@ public class GameActivity extends Activity {
         handler.removeCallbacks(update_thread);
     }
 
+    /*
+    判断销毁条件
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -169,6 +183,9 @@ public class GameActivity extends Activity {
         resetHighestScore();
     }
 
+    /*
+    生成下一个方块
+     */
     private Brick generateNextBrick() {
         Brick brick;
 
@@ -202,6 +219,9 @@ public class GameActivity extends Activity {
         gameStatusView.invalidate();
     }
 
+    /*
+    判断是否有行消除
+     */
     private boolean hasRowsToElimate(int[][] bricks) {
         elimateRowEnd = 0;
         elimateRowsLen = 0;
@@ -224,6 +244,9 @@ public class GameActivity extends Activity {
         return false;
     }
 
+    /*
+    消除行
+     */
     private void elimateRows(int[][] bricks) {
         int tempLen = elimateRowsLen;
 
@@ -243,6 +266,9 @@ public class GameActivity extends Activity {
         }
     }
 
+    /*
+    加分
+     */
     private void increaseScore() {
         switch (elimateRowsLen) {
             case 1: {
@@ -268,6 +294,9 @@ public class GameActivity extends Activity {
         }
     }
 
+    /*
+    达到等级提高分数
+     */
     private boolean reachLevelUpScore() {
         int levelUpScore = 1000 * currentLevel;
         if (currentLevelScore >= levelUpScore) return true;
@@ -275,6 +304,9 @@ public class GameActivity extends Activity {
         return false;
     }
 
+    /*
+    升级
+     */
     private void levelUp() {
         ++currentLevel;
         currentLevelScore = 0;
@@ -284,6 +316,9 @@ public class GameActivity extends Activity {
         gameSpeed -= 50 * (currentLevel - 1);
     }
 
+    /*
+    游戏结束
+     */
     private boolean gameIsOver() {
         for (int i = 0; i < 4; ++i) {
             if (currentBrick.brickPieces[i].getRow() <= 0) return true;
@@ -292,6 +327,9 @@ public class GameActivity extends Activity {
         return false;
     }
 
+    /*
+    重置最高分
+     */
     private void resetHighestScore() {
         SharedPreferences sharedPreferences = getSharedPreferences("highestScore", 0);
         int highestScore = sharedPreferences.getInt("highestScore", 0);
