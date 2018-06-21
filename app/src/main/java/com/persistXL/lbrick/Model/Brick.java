@@ -7,6 +7,9 @@ import com.persistXL.lbrick.Custom.LConfig;
  * Created by persistXL on 18/6/18.
  * This is the abstract Brick class. All seven bricks must extend this class.
  */
+/*
+定义砖块旋转及是否已降落
+ */
 public abstract class Brick {
 
     public int color = LColor.black();

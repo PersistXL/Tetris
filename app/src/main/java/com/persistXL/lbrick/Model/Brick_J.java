@@ -6,6 +6,9 @@ import com.persistXL.lbrick.Custom.LConfig;
 /**
  * Created by persistXL on 18/6/18.
  */
+/*
+倒L形样式
+ */
 public class Brick_J extends Brick {
     public Brick_J() {
         this.color = LColor.darkGreen();

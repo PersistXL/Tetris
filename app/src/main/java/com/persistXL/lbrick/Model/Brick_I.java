@@ -6,6 +6,9 @@ import com.persistXL.lbrick.Custom.LConfig;
 /**
  * Created by persistXL on 18/6/18.
  */
+/*
+竖条样式
+ */
 public class Brick_I extends Brick {
 
     public Brick_I() {

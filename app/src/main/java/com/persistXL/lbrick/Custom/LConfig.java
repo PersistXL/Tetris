@@ -5,7 +5,7 @@ package com.persistXL.lbrick.Custom;
  */
 
 /*
-配置地图的大小
+配置每一个方块的大小的大小
  */
 public class LConfig {
     public static final int rowsOfBricks = 27;

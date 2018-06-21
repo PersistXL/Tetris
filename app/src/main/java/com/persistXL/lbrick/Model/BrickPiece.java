@@ -3,6 +3,9 @@ package com.persistXL.lbrick.Model;
 /**
  * Created by persistXL on 18/6/17.
  */
+/*
+定义方块的颜色即位置的私有队形，即实体类
+*/
 public class BrickPiece {
 
     private int row;
